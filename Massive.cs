@@ -29,6 +29,4 @@ public interface IMassive : IPrinter
     void CreateMassiveByUser();
 
     void AverageValue();
-
-    void Print();
 }

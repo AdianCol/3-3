@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 public interface IOneDemensionMassive : IMassive
 {
     void DeleteDuplicates();
@@ -13,7 +13,7 @@ public sealed class OneDemensionMassive : Massive, IOneDemensionMassive
     {
     }
 
-    public virtual void DeleteDuplicates()
+    public void DeleteDuplicates()
     {
         int n = massive.Length;
         for (int i = 0; i < massive.Length; i++)
@@ -50,20 +50,19 @@ public sealed class OneDemensionMassive : Massive, IOneDemensionMassive
 
     public override void CreateMassiveByUser()
     {
-        int length = (int)(Console.ReadLine());
-        array = new int[length];
+        int length = int.Parse(Console.ReadLine());
+        massive = new int[length];
         Console.WriteLine("Enter the elements of the array:");
-        for (int i = 0; i < array.Length; i++)
+        for (int i = 0; i < massive.Length; i++)
         {
-            array[i] = int.Parse(Console.ReadLine());
+            massive[i] = int.Parse(Console.ReadLine());
         }
     }
 
     public override void CreateMassive()
     {
-        Console.WriteLine("Array length");
-        massive = new int[int.Parse(Console.ReadLine())];
         var random = new Random();
+        massive = new int[random.Next(1, 10)];
         for (int i = 0; i < massive.Length; i++)
         {
             massive[i] = random.Next(-200, 200);

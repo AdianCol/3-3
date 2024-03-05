@@ -14,10 +14,11 @@ public sealed class JaggedMassive : Massive, IJaggedMassive
 
 
 
-    public void CreateMassive(int length1)
+    public override void CreateMassive()
     {
-        massive = new int[length1][];
         var random = new Random();
+        int length1 = random.Next(1, 10);
+        massive = new int[length1][];
         for (int i = 0; i < massive.GetLength(0); i++)
         {
             massive[i] = new int[random.Next(1, 10)];
@@ -28,7 +29,7 @@ public sealed class JaggedMassive : Massive, IJaggedMassive
         }
     }
 
-    public virtual void ChangeChet()
+    public void ChangeChet()
     {
         for (int i = 0; i < massive.Length; i++)
         {
@@ -43,7 +44,7 @@ public sealed class JaggedMassive : Massive, IJaggedMassive
     }
 
 
-    public override void CreateMassive()
+    public override void CreateMassiveByUser()
     {
         Console.WriteLine("Array length");
         massive = new int[int.Parse(Console.ReadLine())][];

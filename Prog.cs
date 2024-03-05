@@ -2,14 +2,38 @@
 
 class Prog{
     static void Main(){
-        Massive[] m = new Massive[3];
-        m[0] = new OneDemensionMassive(1);
-        m[1] = new TwoDemensionMassive(1 ,1);
-        m[2] = new JaggedMassive(1);
+        IPrinter[] m = new IPrinter[]
+        {
+            new Week(),
+            new OneDemensionMassive(),
+            new TwoDemensionMassive(),
+            new JaggedMassive()
+        };
         foreach (var i in m){
-            i.CreateMassive();
-            i.Print();
-            i.AverageValue();
+            if(i is IMassive)
+            {
+                ((IMassive)i).CreateMassive();
+                ((IMassive)i).Print();
+                ((IMassive)i).AverageValue();
+                if (i is IOneDemensionMassive)
+                {
+                    ((IOneDemensionMassive)i).DeleteDuplicates();
+                    i.Print();
+                }
+                else if (i is TwoDemensionMassive)
+                {
+                    ((TwoDemensionMassive)i).Snake();
+                }
+                else if (i is IJaggedMassive)
+                {
+                    ((IJaggedMassive)i).ChangeChet();
+                    i.Print();
+                }
+            }
+            else
+            {
+                i.Print();
+            }
         }
     }
 }

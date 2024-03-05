@@ -3,7 +3,7 @@
     void Snake();
 }
 
-public sealed class TwoDemensionMassive : Massive, IOneDemensionMassive
+public sealed class TwoDemensionMassive : Massive, ITwoDemensionMassive
 {
     private int[,] massive;
 
@@ -11,7 +11,7 @@ public sealed class TwoDemensionMassive : Massive, IOneDemensionMassive
     {
     }
 
-    public virtual void Snake()
+    public void Snake()
     {
         Console.WriteLine("Rows in reverse order:");
         int s = massive.GetLength(0);
@@ -41,15 +41,15 @@ public sealed class TwoDemensionMassive : Massive, IOneDemensionMassive
 
     public override void CreateMassiveByUser()
     {
-        int rows = (int)(Console.ReadLine());
-        int columns = (int)(Console.ReadLine());
-        array = new int[rows, columns];
+        int rows = int.Parse(Console.ReadLine());
+        int columns = int.Parse(Console.ReadLine());
+        massive = new int[rows, columns];
         Console.WriteLine("Enter the elements of the array:");
-        for (int i = 0; i < array.GetLength(0); i++)
+        for (int i = 0; i < massive.GetLength(0); i++)
         {
-            for (int j = 0; j < array.GetLength(1); j++)
+            for (int j = 0; j < massive.GetLength(1); j++)
             {
-                array[i, j] = int.Parse(Console.ReadLine());
+                massive[i, j] = int.Parse(Console.ReadLine());
             }
             System.Console.WriteLine();
         }
@@ -57,10 +57,8 @@ public sealed class TwoDemensionMassive : Massive, IOneDemensionMassive
 
     public override void CreateMassive()
     {
-        Console.WriteLine("Array length by string in format: len1 len2");
-        string[] a = Console.ReadLine().Split();
-        massive = new int[int.Parse(a[0]), int.Parse(a[1])];
         var random = new Random();
+        massive = new int[random.Next(1,11), random.Next(1, 11)];
         for (int i = 0; i < massive.GetLength(0); i++)
         {
             for (int j = 0; j < massive.GetLength(1); j++)
